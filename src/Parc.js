@@ -2,6 +2,7 @@ import React from 'react';
 import jQuery from 'jquery';
 import { Router, Route, IndexRoute, Link, browserHistory } from 'react-router';
 import ReviewList from './ReviewList';
+import ReviewForm from './ReviewForm';
 
 class Parc extends React.Component {
   constructor() {
@@ -36,14 +37,19 @@ class Parc extends React.Component {
   }
 
   render() {
+    var myBlock = {
+      backgroundColor: '#58B4F5',
+      textAlign: 'center',
+      width: '100%',
+      height: 'auto',
+    };
     return(
-      <div>
+      <div style={myBlock}>
         <h1>{this.state.parc.name}({this.state.average_rating})</h1>
         <hr />
         <h4>{this.state.parc.description}</h4>
         <p>Adres: {this.state.parc.city}</p>
         <hr />
-        <h4>Reviews</h4>
         <ReviewList parcId={this.props.params.parcId} />
       </div>
     );

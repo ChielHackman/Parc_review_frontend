@@ -30,18 +30,39 @@ class ParcList extends React.Component {
  }
 
     render() {
+
+      var myBlock = {
+        backgroundImage: 'url()',
+        textAlign: 'center',
+        width: '400px',
+        height: '400px',
+        color: 'black',
+      };
         return (
-            <div>
-            <h1>Parcs:</h1>
-              <table>
-                <tbody>
-                  {this.state.parcs.map(function(parc, i) {
-                    return(
-                    <ParcItem key={parc.id} id={parc.id} name={parc.name} average_rating={parc.average_rating} />
-                    );
-                  })}
-                </tbody>
-              </table>
+              <div>
+                <table>
+                <tr>
+                <td  style={myBlock}>
+                <img src="http://static1.centerparcs.com/76/img/logo-cp.png" />
+                <h2><u>Holland</u></h2>
+                {this.state.parcs.map(function(parc, i) {
+                  return(
+                  <ParcItem key={parc.id} id={parc.id} name={parc.name} average_rating={parc.average_rating} />
+                  );
+                })}
+                </td>
+                <td  style={myBlock}>
+                <img src="http://static1.centerparcs.com/76/img/logo-cp.png" />
+                <h2><u>Belgium</u></h2>
+
+                </td>
+                <td  style={myBlock}>
+                <img src="http://static1.centerparcs.com/76/img/logo-cp.png" />
+                <h2><u>Germany</u></h2>
+
+                </td>
+                </tr>
+                </table>
               </div>
         );
     }

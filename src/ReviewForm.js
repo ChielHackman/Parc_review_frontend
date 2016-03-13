@@ -49,18 +49,22 @@ import React from 'react';
          <div>
           <input ref="newName" placeholder="Firstname Lastname" />
         </div>
+        <br />
         <div>
-          <input ref="newComment" placeholder="Comment/review" />
+          <textarea ref="newComment" placeholder="Comment/review" />
         </div>
         <div>
-          <select ref="newRating">
+        <h4>Rating:</h4>
+        <select ref="newRating">
               <option>1</option>
               <option>2</option>
               <option>3</option>
               <option>4</option>
               <option>5</option>
            </select>
-           <button type="submit">Rate</button>
+           </div>
+           <div>
+           <button type="submit">Add review</button>
          </div>
        </form>
      );

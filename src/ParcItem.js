@@ -26,10 +26,11 @@ class ParcItem extends React.Component {
   }
 
     render() {
+
         return (
-              <tr>
-                <td><Link to={`/parc/${this.state.id}`}>{this.state.name}</Link>({this.state.average_rating})</td>
-              </tr>
+            <div>
+              <Link to={`/parc/${this.state.id}`}>{this.state.name}</Link>({this.state.average_rating})
+            </div>
         );
     }
 }
