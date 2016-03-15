@@ -2,6 +2,7 @@ import React from 'react';
 import jQuery from 'jquery';
 import { Router, Route, IndexRoute, Link, browserHistory } from 'react-router';
 import ParcItem from './ParcItem';
+import model from './Model';
 
 class ParcList extends React.Component {
 
@@ -9,24 +10,30 @@ class ParcList extends React.Component {
         super();
 
         this.state = {
-            parcs: []
+            nederland: [],
+            belgië: [],
+            duitsland: []
         };
     }
 
-  reloadParcs(event){
+  loadParcs(event){
   let component = this;
 
-    jQuery.getJSON("http://parcreviewapp.herokuapp.com/parcs", function(data){
-      console.log(data);
+    function onDone(data) {
+      console.log("Parcs loaded");
 
-        component.setState({
-          parcs: data.parcs
-        });
+    component.setState({
+      nederland: data.nederland,
+      belgië: data.belgië,
+      duitsland: data.duitsland
       });
     }
 
+    model.parcs.index( onDone );
+  }
+
   componentDidMount() {
-  this.reloadParcs();
+  this.loadParcs();
  }
 
     render() {
@@ -36,30 +43,40 @@ class ParcList extends React.Component {
         textAlign: 'center',
         width: '400px',
         height: '400px',
-        color: 'black',
+        color: 'black'
       };
         return (
               <div>
                 <table>
                 <tr>
-                <td  style={myBlock}>
+                <td>
                 <img src="http://static1.centerparcs.com/76/img/logo-cp.png" />
-                <h2><u>Holland</u></h2>
-                {this.state.parcs.map(function(parc, i) {
+                </td>
+                </tr>
+                <tr>
+                <td  style={myBlock}>
+                <h2><u>Belgium</u></h2>
+                {this.state.belgië.map(function(parc, i) {
                   return(
-                  <ParcItem key={parc.id} id={parc.id} name={parc.name} average_rating={parc.average_rating} />
+                  <ParcItem key={parc.id} id={parc.id} name={parc.name} />
                   );
                 })}
                 </td>
                 <td  style={myBlock}>
-                <img src="http://static1.centerparcs.com/76/img/logo-cp.png" />
-                <h2><u>Belgium</u></h2>
-
+                <h2><u>Germany</u></h2>
+                {this.state.duitsland.map(function(parc, i) {
+                  return(
+                  <ParcItem key={parc.id} id={parc.id} name={parc.name} />
+                  );
+                })}
                 </td>
                 <td  style={myBlock}>
-                <img src="http://static1.centerparcs.com/76/img/logo-cp.png" />
-                <h2><u>Germany</u></h2>
-
+                <h2><u>Holland</u></h2>
+                {this.state.nederland.map(function(parc, i) {
+                  return(
+                  <ParcItem key={parc.id} id={parc.id} name={parc.name} />
+                  );
+                })}
                 </td>
                 </tr>
                 </table>

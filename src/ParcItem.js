@@ -29,7 +29,7 @@ class ParcItem extends React.Component {
 
         return (
             <div>
-              <Link to={`/parc/${this.state.id}`}>{this.state.name}</Link>({this.state.average_rating})
+              <Link to={`/parc/${this.state.id}`}>{this.state.name}</Link>
             </div>
         );
     }

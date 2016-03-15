@@ -1,5 +1,6 @@
 import React from 'react';
- import jQuery from 'jquery';
+import jQuery from 'jquery';
+import model from './Model';
 
  class ReviewForm extends React.Component {
    constructor() {
@@ -22,26 +23,19 @@ import React from 'react';
        rating: rating
      };
 
-     jQuery.ajax({
-       type: "POST",
-       url: `http://parcreviewapp.herokuapp.com/parcs/${parcId}/reviews`,
-       data: JSON.stringify({
-           review: newReview
-       }),
-       contentType: "application/json",
-       dataType: "json"
-     })
-       .done(function(data) {
+     function onDone(data) {
          component.props.onChange();
          component.refs.newName.value = "";
          component.refs.newComment.value = "";
          component.refs.newRating.value = "";
-       })
+       }
 
-       .fail(function(error) {
+      function onFail(error) {
          console.log(error);
-       });
-   }
+       }
+
+       model.parcReviews.create( newReview, onDone, onFail, parcId)
+   };
 
    render() {
      return (

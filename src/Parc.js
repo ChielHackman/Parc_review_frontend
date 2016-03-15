@@ -3,6 +3,7 @@ import jQuery from 'jquery';
 import { Router, Route, IndexRoute, Link, browserHistory } from 'react-router';
 import ReviewList from './ReviewList';
 import ReviewForm from './ReviewForm';
+import model from './Model';
 
 class Parc extends React.Component {
   constructor() {
@@ -16,25 +17,25 @@ class Parc extends React.Component {
   }
 
   componentDidMount() {
-    this.findParc();
+    this.getParc();
   }
 
-  findParc() {
+  getParc() {
     console.log("Searching your parc");
 
     let parcId = this.props.params.parcId;
 
     let component = this;
 
-    jQuery.getJSON("http://parcreviewapp.herokuapp.com/parcs/" + parcId + ".json", function(data) {
-      console.log(data);
-
+    function onDone(data) {
       component.setState({
         parc: data.parc,
         average_rating: data.average_rating
-      });
     });
   }
+
+  model.parcs.show(onDone, parcId);
+}
 
   render() {
     var myBlock = {
@@ -45,12 +46,12 @@ class Parc extends React.Component {
     };
     return(
       <div style={myBlock}>
-        <h1>{this.state.parc.name}({this.state.average_rating})</h1>
+        <h1>{this.state.parc.name} </h1><h3>has an average rating of {this.state.average_rating}</h3>
         <hr />
         <h4>{this.state.parc.description}</h4>
         <p>Adres: {this.state.parc.city}</p>
         <hr />
-        <ReviewList parcId={this.props.params.parcId} />
+        <ReviewList onChange={this.getParc.bind(this)} parcId={this.props.params.parcId} />
       </div>
     );
   }

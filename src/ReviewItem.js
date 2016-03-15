@@ -4,10 +4,6 @@ import jQuery from 'jquery';
 class ReviewItem extends React.Component {
    constructor() {
      super();
-
-     this.state = {
-         reviewitem: {}
-       };
      }
 
    componentDidMount() {
