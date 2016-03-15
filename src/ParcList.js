@@ -39,22 +39,32 @@ class ParcList extends React.Component {
     render() {
 
       var myBlock = {
-        backgroundImage: 'url()',
+        textAlign: 'center',
+        width: '1200px',
+        height: '100px',
+        color: 'black'
+      };
+
+      var blockOne = {
         textAlign: 'center',
         width: '400px',
-        height: '400px',
+        height: '100px',
         color: 'black'
       };
         return (
               <div>
                 <table>
                 <tr>
-                <td>
-                <img src="http://static1.centerparcs.com/76/img/logo-cp.png" />
+                <td style={myBlock}>
+                <img src="http://summercampaignvideo.centerparcs.com/bundles/centerparcsfront/images/logo.png" />
+                <h1>Welcome at CenterParcs reviews.</h1>
+                <p>Choose a parc to look at the details and reviews.</p>
                 </td>
                 </tr>
+                </table>
+                <table>
                 <tr>
-                <td  style={myBlock}>
+                <td style={blockOne}>
                 <h2><u>Belgium</u></h2>
                 {this.state.belgië.map(function(parc, i) {
                   return(
@@ -62,7 +72,7 @@ class ParcList extends React.Component {
                   );
                 })}
                 </td>
-                <td  style={myBlock}>
+                <td style={blockOne}>
                 <h2><u>Germany</u></h2>
                 {this.state.duitsland.map(function(parc, i) {
                   return(
@@ -70,7 +80,7 @@ class ParcList extends React.Component {
                   );
                 })}
                 </td>
-                <td  style={myBlock}>
+                <td style={blockOne}>
                 <h2><u>Holland</u></h2>
                 {this.state.nederland.map(function(parc, i) {
                   return(
